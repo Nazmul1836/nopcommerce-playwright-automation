@@ -26,6 +26,8 @@ module.exports = defineConfig({
     use: {
         baseURL: process.env.BASE_URL,
 
+        ignoreHTTPSErrors: true,
+
         headless: true,
 
         screenshot: 'only-on-failure',
