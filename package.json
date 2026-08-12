@@ -1,0 +1,28 @@
+{
+  "name": "nopcommerce-automation",
+  "version": "1.0.0",
+  "description": "Playwright automation framework for nopCommerce",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:chromium": "playwright test --project=chromium",
+    "test:firefox": "playwright test --project=firefox",
+    "test:webkit": "playwright test --project=webkit",
+    "report": "playwright show-report"
+  },
+  "keywords": [
+    "playwright",
+    "automation",
+    "qa"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.62.1"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2"
+  }
+}
