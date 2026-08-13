@@ -1,0 +1,20 @@
+{
+    "validUser": {
+        "firstName": "Test",
+        "lastName": "User",
+        "email": "testuser@example.com",
+        "company": "Test Company",
+        "password": "Test@12345",
+        "confirmPassword": "Test@12345"
+    },
+
+    "invalidUser": {
+        "firstName": "Test",
+        "lastName": "User",
+        "email": "invalid-email",
+        "company": "Test Company",
+        "password": "Test@12345",
+        "confirmPassword": "Test@12345"
+    }
+}
+

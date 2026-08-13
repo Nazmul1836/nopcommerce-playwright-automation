@@ -1,0 +1,8 @@
+{
+    "admin": {
+        "email": "admin@yourStore.com",
+        "password": "admin",
+        "invalidEmail": "invalid@yourStore.com",
+        "invalidPassword": "invalid"
+    }
+}

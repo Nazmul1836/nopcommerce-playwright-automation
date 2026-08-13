@@ -1,0 +1,22 @@
+{
+  "existingProduct": {
+    "name": "Smart Watch"
+
+  },
+  "nonExistingProduct": {
+    "name": "XYZ Non Existing Product"
+  },
+  "partialProduct": {
+    "name": "Smart",
+    "expectedProduct": {
+      "name": "Smart Watch"
+    }
+  },
+   "addToCartProduct": {
+        "name": "T-shirt"
+    },
+    "secondCartProduct": {
+        "name": "Havana Hat"
+    }
+
+}
