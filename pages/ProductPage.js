@@ -2,7 +2,7 @@ class ProductPage {
     constructor(page) {
         this.page = page;
         this.productOption = page.locator('#product_attribute_1');
-        this.addToCartButton = page.getByRole('button', { name: 'Add to cart' });
+        this.addToCartButton = page.locator('#add-to-cart-button-3, #add-to-cart-button-7, button.add-to-cart-button');
         this.shoppingCartLink = page.getByRole('link', { name: 'shopping cart', exact: true });
         this.homePageLink = page.getByRole('link', { name: 'Home page' });
 
@@ -15,7 +15,7 @@ class ProductPage {
         await this.productOption.selectOption(optionValue);
     }
     async addToCart() {
-        await this.addToCartButton.click();
+        await this.addToCartButton.first().click();
     }
     async goToShoppingCart() {
         await this.shoppingCartLink.click();
