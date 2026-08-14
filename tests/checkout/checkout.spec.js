@@ -2,7 +2,8 @@ const { test, expect } = require('@playwright/test');
 const { CheckoutPage } = require('../../pages/CheckoutPage');
 const{LoginPage} = require('../../pages/LoginPage');
 const { CategoryPage } = require('../../pages/CategoryPage');
-const{CartPage} = require('../../pages/CartPage'); 
+const{CartPage} = require('../../pages/CartPage');
+const { AccountPage } = require('../../pages/AccountPage');
 const users = require('../../test-data/users.json');
 const categories = require('../../test-data/category.json');
 const products = require('../../test-data/products.json');
@@ -15,6 +16,7 @@ test.describe.serial('Checkout Functionality', () => {
         const loginPage = new LoginPage(page);
         const categoryPage = new CategoryPage(page);
         const productPage = new ProductPage(page);
+        const accountPage = new AccountPage(page);
         const categoryName = categories.category.name;
         const productName = products.addToCartProduct.name;
 
@@ -24,6 +26,14 @@ test.describe.serial('Checkout Functionality', () => {
             users.admin.email,
             users.admin.password
         );
+        
+        // Ensure cart is empty before starting test to avoid price assertion failures
+        await page.goto('/cart');
+        await page.evaluate(() => {
+            document.querySelectorAll('button.remove-btn, .remove-from-cart input, .remove-from-cart button').forEach(btn => btn.click());
+        });
+        await page.waitForTimeout(1000); // Allow cart update to process
+
         await categoryPage.openCategory(categoryName);
         await productPage.openProduct(productName);
         await productPage.selectProductColorOption("1");
@@ -31,8 +41,29 @@ test.describe.serial('Checkout Functionality', () => {
         await productPage.goToShoppingCart();
         await checkoutPage.checkout();
         await checkoutPage.continueThroughCheckout();
+        
+        // Get product price from checkout page BEFORE placing order
+        const productPrice = await checkoutPage.getProductPriceFromCheckout();
+        console.log('Product Name:', productName);
+        console.log('Product Price:', productPrice);
+        
         await checkoutPage.confirmOrder();
-        await expect(page.getByText(/Your order has been/i)).toBeVisible({ timeout: 20000 });
+        
+        // Get order number AFTER placing order
+        const orderNumber = await checkoutPage.getOrderNumber();
+        console.log('Order Number:', orderNumber);
+        
+        // Navigate to order details directly to verify product name and price
+        expect(orderNumber).toBeTruthy();
+        await page.goto(`/orderdetails/${orderNumber}`);
+        
+        // Verify all three details are on the order details page
+        const orderDetailsContent = await page.textContent('body');
+        expect(orderDetailsContent).toContain(productName);
+        expect(orderDetailsContent).toContain(productPrice.replace('$', ''));
+        expect(orderDetailsContent).toContain(orderNumber);
+        
+        console.log('✓ Order details verified: Product name, price, and order number on details page');
     });
     test('CHECKOUT-002: Terms checkbox is available and unchecked by default', async ({ page }) => {
         const checkoutPage = new CheckoutPage(page);

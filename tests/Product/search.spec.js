@@ -6,7 +6,7 @@ test('SEARCH-001: User can search for a product', async ({ page }) => {
 const searchPage = new SearchPage(page);
 const productName = products.existingProduct.name;
 await page.goto('/');
-searchPage.searchProduct(productName);
+await searchPage.searchProduct(productName);
     await expect(
             page.getByRole('link', {
                 name: productName,

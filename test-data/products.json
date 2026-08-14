@@ -16,7 +16,8 @@
         "name": "T-shirt"
     },
     "secondCartProduct": {
-        "name": "Havana Hat"
+        "name": "Havana Hat",
+        "price": 50.00
     }
 
 }

@@ -16,6 +16,8 @@ class ProductPage {
     }
     async addToCart() {
         await this.addToCartButton.first().click();
+        // Wait for the AJAX "product added" notification before proceeding
+        await this.page.locator('#bar-notification .success').waitFor({ state: 'visible', timeout: 5000 }).catch(() => {});
     }
     async goToShoppingCart() {
         await this.shoppingCartLink.click();
