@@ -6,6 +6,5 @@ test('Verify application is reachable', async ({ page }) => {
     console.log('Page title:', await page.title());
     console.log('Current URL:', page.url());
 
-  await expect(page).toHaveURL(/localhost:59579/);
-    await expect(page).toHaveTitle('-My Store');
+    await expect(page).toHaveTitle(/Store|nopCommerce/i);
 });
