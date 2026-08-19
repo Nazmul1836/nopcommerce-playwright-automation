@@ -4,7 +4,7 @@ require('dotenv').config();
 module.exports = defineConfig({
     testDir: './tests',
 
-    timeout: 120 * 1000,
+    timeout: 30 * 1000,
 
     expect: {
         timeout: 5 * 1000
@@ -14,7 +14,7 @@ module.exports = defineConfig({
 
     forbidOnly: !!process.env.CI,
 
-    retries: process.env.CI ? 2 : 0,
+    retries: process.env.CI ? 1 : 0,
 
     workers: process.env.CI ? 1 : undefined,
 

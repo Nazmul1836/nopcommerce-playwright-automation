@@ -37,7 +37,7 @@ jobs:
       env:
         BASE_URL: ${{ secrets.BASE_URL || 'https://demo.nopcommerce.com/' }}
         CI: true
-      run: npx playwright test
+      run: npx playwright test --project=chromium
 
     - name: Upload Playwright HTML Report
       if: ${{ !cancelled() }}
