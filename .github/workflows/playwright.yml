@@ -49,7 +49,8 @@ jobs:
 
     - name: Generate Allure Report
       if: ${{ !cancelled() }}
-      run: npx allure generate allure-results --clean -o allure-report || true
+      continue-on-error: true
+      run: npx allure generate allure-results --clean -o allure-report
 
     - name: Upload Allure Report Artifact
       if: ${{ !cancelled() }}
