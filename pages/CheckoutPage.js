@@ -14,6 +14,7 @@ class CheckoutPage {
     }
 
     async continueThroughCheckout() {
+
         for (let i = 0; i < 15; i++) {
             await this.page.locator('#ajaxBusy').waitFor({ state: 'hidden', timeout: 5000 }).catch(() => {});
             await this.page.waitForTimeout(1000);
