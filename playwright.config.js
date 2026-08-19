@@ -20,7 +20,8 @@ module.exports = defineConfig({
 
     reporter: [
         ['html', { open: 'never' }],
-        ['list']
+        ['list'],
+        ['allure-playwright', { detail: true, outputFolder: 'allure-results', suiteTitle: true }]
     ],
 
     use: {
