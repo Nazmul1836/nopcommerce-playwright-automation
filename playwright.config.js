@@ -24,7 +24,7 @@ module.exports = defineConfig({
     ],
 
     use: {
-        baseURL: process.env.BASE_URL,
+        baseURL: process.env.BASE_URL || 'https://localhost:59579/',
 
         ignoreHTTPSErrors: true,
 

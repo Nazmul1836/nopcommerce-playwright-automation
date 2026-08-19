@@ -35,7 +35,7 @@ jobs:
 
     - name: Run Playwright Tests
       env:
-        BASE_URL: ${{ secrets.BASE_URL || 'https://localhost:59579/' }}
+        BASE_URL: ${{ secrets.BASE_URL || 'https://demo.nopcommerce.com/' }}
         CI: true
       run: npx playwright test
 
